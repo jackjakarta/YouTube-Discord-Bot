@@ -3,5 +3,5 @@ Install the packages from the requirements.txt file by using pip3 install -r req
 
 Install ffmpeg on your machine.
 
-#Bot Information
+#Bot Info
 The bot let's users play music from a youtube link when using the command ?play. Use ?help for a list of all commands.
