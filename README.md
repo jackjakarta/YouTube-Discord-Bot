@@ -1,5 +1,5 @@
 # Bot Setup
-Install the packages from the requirements.txt file by using pip3 install -r requirements.txt.
+Install the packages from the requirements.txt file in a python virtual enviroment by using pip3 install -r requirements.txt.
 
 Install ffmpeg on your machine. 
 
