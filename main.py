@@ -36,7 +36,7 @@ async def on_message(message):
     
 
     elif message.content.startswith('!play'):
-        # Get the YouTube video link
+        # Get the video or audio link
         link = message.content.split(' ')[1]
         # Check if user is in a voice channel
         if message.author.voice is None:
@@ -47,13 +47,18 @@ async def on_message(message):
             voice_channel = message.author.voice.channel
             vc = await voice_channel.connect()
         # Play the audio
-        ydl_opts = {'format': 'bestaudio/best', 'noplaylist': True,'nocheckcertificate': True, 'ignoreerrors': True, 'quiet': True, 'outtmpl': '-'}
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(link, download=False)
-            url = info['url']
-            vc.play(discord.FFmpegPCMAudio(url), after=lambda e: print('done', e))
+        if 'youtube' in link or 'youtu.be' in link:
+            ydl_opts = {'format': 'bestaudio/best', 'noplaylist': True,'nocheckcertificate': True, 'ignoreerrors': True, 'quiet': True, 'outtmpl': '-'}
+            with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+                info = ydl.extract_info(link, download=False)
+                url = info['url']
+                vc.play(discord.FFmpegPCMAudio(url), after=lambda e: print('done', e))
+                while vc.is_playing():
+                    await asyncio.sleep(1)
+        elif 'soundcloud' in link:
+            vc.play(discord.FFmpegOpusAudio(link), after=lambda e: print('done', e))
             while vc.is_playing():
-                await asyncio.sleep(1)
+                    await asyncio.sleep(1)
     elif message.content.startswith('!stop'):
         if vc is not None:
             vc.stop()
