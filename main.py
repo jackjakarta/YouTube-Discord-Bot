@@ -26,7 +26,7 @@ async def on_message(message):
   
     if message.content.startswith("!help"):
         help_text = "!play - play music by inserting youtube URL after command \n" \
-                    "!stop - disconnect bot \n"\
+                    "!stop - disconnect from voice channel \n"\
                     "!pause - pause/stop \n"\
                     "!resume - resume playing after pause \n"\
                     "!help - list of all commands \n"

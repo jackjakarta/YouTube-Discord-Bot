@@ -18,3 +18,5 @@ python-dotenv==0.21.1
 pytz==2022.7.1
 six==1.16.0
 yarl==1.8.2
+youtube_dl
+
